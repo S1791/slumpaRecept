@@ -1,7 +1,7 @@
 
 {
   "name": "Slumpa recept",
-  "short_name": "Slumpa",
+  "short_name": "SlumpaRecept",
   "description": "En enkel PWA som slumpar ett recept från en JSON-array.",
   "lang": "sv-SE",
   "start_url": "/index.html?source=pwa",

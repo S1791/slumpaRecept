@@ -1,0 +1,36 @@
+:root {
+  --color-bg: #f6f6f6;
+  --color-text: #333333;
+  --color-primary: #4a90e2;
+  --color-primary-hover: #357ABD;
+}
+
+* {
+  /* --color-bg: #f6f6f6; */
+  --color-bg: black;
+  --color-text: white;
+  --color-primary: #4a90e2;
+  --color-primary-hover: #357ABD;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+@media only screen and (max-width: 420px) {
+
+  body {
+    background-color: var(--color-bg);
+    margin: 1rem;
+
+  }
+
+h1 {
+    font-size: 1.5rem;
+    color: var(--color-primary)
+  }
+  
+}
