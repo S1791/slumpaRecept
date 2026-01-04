@@ -20,7 +20,7 @@ body {
   margin: 2rem;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 430px) {
 
   body {
     background-color: var(--color-bg);
@@ -29,7 +29,7 @@ body {
   }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 3rem;
     color: var(--color-primary)
   }
   
