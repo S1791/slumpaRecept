@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Slumpa objekt från JSON</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    #result { margin-top: 1rem; padding: .75rem; background: #f6f6f6; border-radius: 8px; }
+    button { padding: .5rem .9rem; }
+  </style>
+</head>
+<body>
+  <h1>Slumpa objekt</h1>
+  <button id="btn">Slumpa!</button>
+  <pre id="result">Klicka på “Slumpa!”</pre>
+
+  <script>
+    async function getData() {
+      const res = await fetch('data.json');         // Laddar JSON-arrayen
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+
+    // Säkrare slump för webben (använder Web Crypto om finns)
+    function randomIndex(max) {
+      if (window.crypto && window.crypto.getRandomValues) {
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        return array[0] % max;
+      }
+      // Fallback
+      return Math.floor(Math.random() * max);
+    }
+
+    function pickRandom(arr) {
+      if (!Array.isArray(arr) || arr.length === 0) {
+        throw new Error('Arrayen är tom eller ogiltig.');
+      }
+      return arr[randomIndex(arr.length)];
+    }
+
+    (async () => {
+      try {
+        const data = await getData();
+        const btn = document.getElementById('btn');
+        const out = document.getElementById('result');
+
+        btn.addEventListener('click', () => {
+          try {
+            const item = pickRandom(data);
+            out.textContent = JSON.stringify(item, null, 2);
+          } catch (e) {
+            out.textContent = 'Fel: ' + e.message;
+          }
+        });
+      } catch (e) {
+        document.getElementById('result').textContent =
+          'Kunde inte ladda data.json: ' + e.message;
+      }
+    })();
+  </script>
+</body>
+</html>
